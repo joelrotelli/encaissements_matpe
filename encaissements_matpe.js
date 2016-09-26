@@ -3,20 +3,27 @@ var nodemailer = require('nodemailer');// create reusable transporter object usi
 
 //SET SMTP CONNECTION INFOS HERE
 var transporter = nodemailer.createTransport('smtps://you%40domain.com:password@auth.smtp.domain.com');
+
+//SET FACTURATION.PRO FIRM_ID, USER AN PASSWORD HERE
+var firm_id = YOUR_FIRM_ID
+var matpe_user = MPATPE_USER
+var matpe_password = MPATPE_PASSWORD
+var sender_mail = YOUR_EMAIL
+var receiver_mail = YOUR_ACCOUNTANT_EMAIL
+
 var language = 'fr';
 var rest = require('node-rest-client');
-var firm_id = YOUR_FIRM_ID
 
 var Client = rest.Client;
 
 // configure basic http auth for every request
-var options_auth = {user:  MPATPE_USER , password: MPATPE_PASSWORD};
+var options_auth = {user:  matpe_user , password: matpe_password};
 
 var client = new Client(options_auth);
 
 var args = {
     headers: {
-        "User-Agent": "Encaissements <you@domain.com>",
+        "User-Agent": "Encaissements <" + sender_mail + ">",
     }
 };
 
@@ -63,8 +70,8 @@ client.get("https://www.facturation.pro/firms/ "+ firm_id + "/invoices.json?bill
         if(error){
             messageRobot = error;
             var mailOptions = {
-                from: 'you@domain.com', // sender address
-                to: 'you@domain.com', // list of receivers
+                from: sender_mail, // sender address
+                to: receiver_mail, // list of receivers
                 subject: messageRobot, // Subject line
                 html: messageRobot
             };
