@@ -1,0 +1,13 @@
+{
+  "name": "encaissements",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node encaissements_matpe.js"
+  },
+  "dependencies": {
+    "moment": "latest",
+    "nodemailer": "^0.9.5",
+    "transporter": "latest",
+    "node-rest-client": "latest"
+  }
+}
