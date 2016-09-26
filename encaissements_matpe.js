@@ -68,13 +68,6 @@ client.get("https://www.facturation.pro/firms/ "+ firm_id + "/invoices.json?bill
     // send mail with defined transport object
     transporter.sendMail(mailOptions, function(error, info){
         if(error){
-            messageRobot = error;
-            var mailOptions = {
-                from: sender_mail, // sender address
-                to: receiver_mail, // list of receivers
-                subject: messageRobot, // Subject line
-                html: messageRobot
-            };
             // send mail with defined transport object
             transporter.sendMail(mailOptions, function(error, info){
                 if(error){
