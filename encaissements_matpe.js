@@ -43,11 +43,13 @@ client.get("https://www.facturation.pro/firms/ "+ firm_id + "/invoices.json?bill
     var totalAmount = 0;
     var totalAmountVAT = 0;
     var totalVAT = 0;
+
     invoices.forEach(function (invoice) {
         totalAmount = parseFloat(invoice.total) + parseFloat(totalAmount);
         totalAmountVAT = parseFloat(invoice.total_with_vat) + parseFloat(totalAmountVAT);
-        totalVAT = parseFloat(invoice.total_with_vat) + parseFloat(invoice.total)
     });
+
+    totalVAT = Math.round(totalAmountVAT - totalAmount, 2);
 
 
     console.log('Encaissements HT : ' + totalAmount);
